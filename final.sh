@@ -1,4 +1,4 @@
-#!/bin/bash -v
+#!/bin/bash
 
 function usage {
         echo " Usage:"
@@ -10,6 +10,13 @@ if [ -z $1 ]
 then
     usage
 exit
+fi
+
+# sanity check
+if [ ! -f $(dirname "$0")/.key ]
+then
+    echo "there's no file $(dirname "$0")/.key in the target dir, please create it."
+exit 1
 fi
 
 source $(dirname "$0")/.key
